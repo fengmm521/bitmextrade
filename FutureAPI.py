@@ -45,7 +45,7 @@ class Future:
         
         if symbol == 'XBT':
             if contractType == 'XBTUSD':
-                self.future_trade_xbtusd(price, amount, tradeType)
+                return self.future_trade_xbtusd(price, amount, tradeType)
             else:
                 print('合约交易类型%s不可用:'%(contractType))
 
@@ -62,23 +62,19 @@ class Future:
         if tradeType == '1': #开多
             print('开多:',tmpprice,amount)
             res = self.client.Order.Order_new(symbol='XBTUSD', orderQty=int(amount), price=float(tmpprice)).result()
-            print(res)
         elif tradeType == '3': #平多
             print('平多:',tmpprice,amount)
-            res = self.client.Order.Order_new(symbol='XBTUSD', orderQty=int(amount),execInst='Close', price=float(tmpprice)).result()
-            print(res)
+            res = self.client.Order.Order_new(symbol='XBTUSD', orderQty=-int(amount),execInst='Close', price=float(tmpprice)).result()
         elif tradeType == '2': #开空
             print('开空:',tmpprice,amount)
             res = self.client.Order.Order_new(symbol='XBTUSD', orderQty=-int(amount), price=float(tmpprice)).result()
-            print(res)
         elif tradeType == '4': #平空
             print('平空:',tmpprice,amount)
-            res = self.client.Order.Order_new(symbol='XBTUSD', orderQty=-int(amount),execInst='Close', price=float(tmpprice)).result()
-            print(res)
+            res = self.client.Order.Order_new(symbol='XBTUSD', orderQty=int(amount),execInst='Close', price=float(tmpprice)).result()
         else:
             print('tradeType,下单类型设置错误:',tradeType)
 
-        return res
+        return res[0]
 
     #OKCoin期货市场深度信息
     def future_depth(self,symbol,contractType,size): 
