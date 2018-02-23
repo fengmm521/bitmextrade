@@ -174,6 +174,7 @@ class TradeTool(object):
                 if not self.isTest:
                     print(self.okcoinFuture.future_trade(self.symbol,self.contractType,str(pprice),str(pamount),'4','0','10'))
                 cmd = 'say 平空,%.3f,%d张'%(float(pprice),int(pamount))
+                self.isOpen = False
                 os.system(cmd)
             except Exception as e:
                 cmd = 'say 参数错误'
@@ -186,6 +187,7 @@ class TradeTool(object):
                 if not self.isTest:
                     print(self.okcoinFuture.future_trade(self.symbol,self.contractType,str(pprice),str(self.amount),'4','0','10'))
                 cmd = 'say 平空,%.3f,%d张'%(float(pprice),int(self.amount))
+                self.isOpen = False
                 os.system(cmd)
             except Exception as e:
                 cmd = 'say 参数错误'
@@ -344,7 +346,9 @@ class TradeTool(object):
                 if not self.isTest:
                     print(self.okcoinFuture.future_trade(self.symbol,self.contractType,str(pprice),str(pamount),'3','0','10'))
                 cmd = 'say 平多,%.3f,%d张'%(float(pprice),int(pamount))
+                self.isOpen = False
                 os.system(cmd)
+                
             except Exception as e:
                 cmd = 'say 参数错误'
                 os.system(cmd)
@@ -356,6 +360,7 @@ class TradeTool(object):
                 if not self.isTest:
                     print(self.okcoinFuture.future_trade(self.symbol,self.contractType,str(pprice),str(self.amount),'3','0','10'))
                 cmd = 'say 平多,%.3f,%d张'%(float(pprice),int(self.amount))
+                self.isOpen = False
                 os.system(cmd)
             except Exception as e:
                 cmd = 'say 参数错误'
