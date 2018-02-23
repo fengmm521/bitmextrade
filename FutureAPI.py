@@ -6,6 +6,8 @@ from bitmex_websocket import BitMEXWebsocket
 import bitmex
 import logging
 
+import AlarmPrice
+
 kfpth = '../../btc/bitmex/key.txt'
 
 
@@ -28,6 +30,17 @@ class Future:
         self.logger = self.setup_logger()
 
         self.logger.info("Instrument data: %s" % self.ws.get_instrument())
+
+        AlarmPrice.initAlarmObj(self.ws)
+        
+    def startAlarm(self,price):
+        AlarmPrice.startAlarm(price)
+
+    def stopAlarm(self):
+        AlarmPrice.stopAlarm()
+
+    def isAlarmWork(self):
+        return AlarmPrice.isWork()
 
     def setup_logger(self):
         # Prints logger info to terminal

@@ -41,9 +41,17 @@ class TradeTool(object):
     def setAmount(self,amount):
         self.amount = amount
 
+    def setAlarmPrice(self,price):
+        self.okcoinFuture.startAlarm(price)
+    def cleanAlarmPrice(self):
+        self.okcoinFuture.stopAlarm()
+
     def printSet(self):
         print('isTest:',self.isTest)
         print('amount:',self.amount)
+        alarmPrice = self.okcoinFuture.isAlarmWork()
+        if alarmPrice != None:
+            print('alarm:',alarmPrice)
 
     def getDepth(self):
         print(self.symbol,self.contractType)
@@ -439,7 +447,7 @@ class TradeTool(object):
 
 def main(pAmount = 30, ispTest = True):
      tradetool = TradeTool(amount = pAmount,isTest = ispTest)
-     pstr = '程序重新运行,\nos:开空\ncs:平空\nol:开多\ncl:平多\np:输出设置项\nset:设置每次成交量\nc:取消所有未成交定单\ntest:\n\t输入1表示使用测试方式运行\n\t0表示正试运行下单\nq:退出\n请输入:'
+     pstr = '程序重新运行,\nos:开空\ncs:平空\nol:开多\ncl:平多\np:输出设置项\nset:设置每次成交量\na:设置和取消价格报警\nc:取消所有未成交定单\ntest:\n\t输入1表示使用测试方式运行\n\t0表示正试运行下单\nq:退出\n请输入:'
      while True:
         inputstr = input(pstr);
         inputstr = str(inputstr)
@@ -558,6 +566,15 @@ def main(pAmount = 30, ispTest = True):
             tradetool.cleanAllTrade()
         elif inputstr == 'p':
             tradetool.printSet()
+        elif inputstr == 'a':
+            if len(inputstrs) == 2:
+                try:
+                    tmpprice = float(inputstrs[1])
+                    tradetool.setAlarmPrice(tmpprice)
+                except Exception as e:
+                    tradetool.cleanAlarmPrice()
+            else:
+                tradetool.cleanAlarmPrice()
         elif inputstr == 'test':
             if len(inputstrs) == 2:
                 if inputstrs[1] == '1':
