@@ -21,3 +21,12 @@ bitmex 快捷下单工具
 
 2.设置是否是测试运行模式，（默认是测试模式）
 
+rest行情接口：
+
+https://www.bitmex.com/api/v1/instrument?symbol=xbt
+
+https://www.bitmex.com/api/v1/instrument?symbol=xbt&columns=askPrice%2CmidPrice%2CbidPrice&count=100&reverse=false
+
+rest接口说明：
+
+https://www.bitmex.com/api/explorer/#!/Instrument/Instrument_get
