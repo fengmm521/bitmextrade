@@ -7,6 +7,7 @@
 
 import sys
 import os
+import time
 
 
 
@@ -24,6 +25,11 @@ def main():
     elif x[0] < 1.5:
         print('bbb')
 
+def testtime():
+    # 2018-03-03T08:14:49.225Z
+    a = "2018-03-03T08:14:49.225Z"
+    print time.mktime(time.strptime(a,"%Y-%m-%dT%H:%M:%S.%fZ"))
+
 if __name__ == '__main__':
-    main()
+    testtime()
 
