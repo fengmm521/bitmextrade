@@ -24,7 +24,7 @@ class Future:
         secretkey = lines[1].replace('\r','').replace('\n','')
 
         self.client = bitmex.bitmex(test=False, api_key=apikey, api_secret=secretkey)
-        # www.bitmex.com/realtime
+        # https://www.bitmex.com/realtime
         # https://www.bitmex.com/api/v1
         self.ws = BitMEXWebsocket(endpoint="https://www.bitmex.com/realtime", symbol="XBTUSD",api_key=None, api_secret=None)
 
@@ -73,17 +73,22 @@ class Future:
     def future_trade_xbtusd(self,price,amount,tradeType):
         res = None
         tmpprice = '%.1f'%(float(price))
+        print('-----------------------')
+        print(self.client.Order.__dict__)
+        print(dir(self.client.Order))
         if tradeType == '1': #开多
             print('开多:',tmpprice,amount)
             res = self.client.Order.Order_new(symbol='XBTUSD', orderQty=int(amount), price=float(tmpprice)).result()
         elif tradeType == '3': #平多
             print('平多:',tmpprice,amount)
+
             res = self.client.Order.Order_new(symbol='XBTUSD', orderQty=-int(amount),execInst='Close', price=float(tmpprice)).result()
         elif tradeType == '2': #开空
             print('开空:',tmpprice,amount)
             res = self.client.Order.Order_new(symbol='XBTUSD', orderQty=-int(amount), price=float(tmpprice)).result()
         elif tradeType == '4': #平空
             print('平空:',tmpprice,amount)
+            #Order_new
             res = self.client.Order.Order_new(symbol='XBTUSD', orderQty=int(amount),execInst='Close', price=float(tmpprice)).result()
         else:
             print('tradeType,下单类型设置错误:',tradeType)
