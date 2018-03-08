@@ -24,8 +24,9 @@ class Future:
         secretkey = lines[1].replace('\r','').replace('\n','')
 
         self.client = bitmex.bitmex(test=False, api_key=apikey, api_secret=secretkey)
-
-        self.ws = BitMEXWebsocket(endpoint="https://www.bitmex.com/api/v1", symbol="XBTUSD",api_key=None, api_secret=None)
+        # www.bitmex.com/realtime
+        # https://www.bitmex.com/api/v1
+        self.ws = BitMEXWebsocket(endpoint="https://www.bitmex.com/realtime", symbol="XBTUSD",api_key=None, api_secret=None)
 
         self.logger = self.setup_logger()
 
