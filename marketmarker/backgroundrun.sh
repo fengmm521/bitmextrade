@@ -6,4 +6,4 @@
 export PATH=/usr/bin/:/usr/local/bin:/bin:
 
 cd /Users/mage/Documents/github/bitmextrade/marketmarker
-nohup /Users/mage/Library/Python/3.6/bin/marketmaker
+nohup /Users/mage/Library/Python/3.6/bin/marketmaker >log.txt 2>&1 &

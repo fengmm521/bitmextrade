@@ -503,10 +503,13 @@ class OrderManager:
     def run_loop(self):
         while True:
             sys.stdout.write("-----\n")
+            sys.stdout.write('+++++++++++++++++++\n')
             sys.stdout.flush()
 
             self.check_file_change()
             sleep(settings.LOOP_INTERVAL)
+
+
 
             # This will restart on very short downtime, but if it's longer,
             # the MM will crash entirely as it is unable to connect to the WS on boot.

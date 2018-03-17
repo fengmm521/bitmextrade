@@ -1,1 +1,3 @@
 *.pyc
+*.txt
+marketmarker/nohup.out
