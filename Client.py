@@ -445,7 +445,7 @@ class TradeTool(object):
         self.isOpen = False
 
 
-def main(pAmount = 30, ispTest = True):
+def main(pAmount = 100, ispTest = False):
      tradetool = TradeTool(amount = pAmount,isTest = ispTest)
      pstr = '程序重新运行,\nos:开空\ncs:平空\nol:开多\ncl:平多\np:输出设置项\nset:设置每次成交量\na:设置和取消价格报警\nc:取消所有未成交定单\ntest:\n\t输入1表示使用测试方式运行\n\t0表示正试运行下单\nq:退出\n请输入:'
      while True:
