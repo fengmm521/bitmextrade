@@ -9,6 +9,7 @@ import logging
 import AlarmPrice
 
 kfpth = '../../btc/bitmex/key.txt'
+# kfpth = '/Users/Allen/Documents/key/bitmexkey.txt'
 
 
 
